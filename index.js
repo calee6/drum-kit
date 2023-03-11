@@ -3,11 +3,13 @@ var number0fDrums = document.getElementsByClassName("drum").length;
 for (i = 0; i < number0fDrums; i++) {
     document.getElementsByClassName("drum")[i].addEventListener("click", function () {
         playSound(this.innerHTML);
+        buttonAnimation(this.innerHTML);
     });
 }
 
 document.addEventListener("keydown", (event) => {
     playSound(event.key);
+    buttonAnimation(event.key);
 });
 
 function playSound (musicKey) {
@@ -44,4 +46,13 @@ function playSound (musicKey) {
             var tom1 = new Audio('sounds/buzzer.mp3');
             tom1.play();
     }
+
+
+}
+function buttonAnimation (pressedKey) {
+    document.querySelector("." + pressedKey).classList.add("pressed");
+
+    setTimeout(() => {
+        document.querySelector("." + pressedKey).classList.remove("pressed");
+    }, 100);
 }
